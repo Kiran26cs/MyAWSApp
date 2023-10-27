@@ -46,7 +46,12 @@ public class Startup
             endpoints.MapControllers();
             endpoints.MapGet("/", async context =>
             {
-                await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
+                var html = @"<h1>Welcome to running ASP.NET Core on AWS Lambda</h1>
+                            <div>Following are the active endpoints with the webapi</div>
+                            <div>#/userapi <strong>(HttpGet from dynamoDB)</strong></div>
+                            <div>#/userapi <strong>(HttpPost to dynamoDB)</strong></div>
+                            <div>#/userapi <strong>(HttpPut to dynamoDB)</strong></div>";
+                await context.Response.WriteAsync(html);
             });
         });
     }
